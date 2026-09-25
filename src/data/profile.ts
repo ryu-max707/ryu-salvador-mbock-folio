@@ -69,7 +69,7 @@ export const profile = {
   lastName: 'Mbock',
   initials: 'SR',
   headline: ['Développeur', 'Formateur'],
-  rotating: ['applications web', 'apps mobiles Flutter & Kotlin', 'API Laravel', 'interfaces Vue.js', 'développeurs de demain'],
+  rotating: ['applications web', 'apps mobiles Flutter & Kotlin', 'API Laravel', 'interfaces Vue.js', ' les développeurs de demain'],
   pitch:
     "Je conçois des applications web et mobiles fiables — Laravel, Vue.js, Flutter, Kotlin — de l'idée à la mise en production, et je transmets ce savoir-faire à travers des formations concrètes, orientées projet.",
   location: 'Douala, Cameroun · À distance',
