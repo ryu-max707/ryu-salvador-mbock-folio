@@ -1,13 +1,36 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { techRows, type Tech } from '@/data/techs'
+import { useTheme } from '@/composables/useTheme'
 
-// Compétences reprises du CV
-const words = ['Laravel', 'Vue.js', 'Flutter', 'Kotlin', 'React.js', 'Tailwind CSS', 'Livewire', 'Node.js', 'PostgreSQL', 'MySQL', 'Figma']
-const words2 = ['Formation IT', 'Fintech', 'Web & mobile', 'Jetpack Compose', 'Ateliers pratiques', 'Projets concrets']
+const { theme } = useTheme()
+const [rowA = [], rowB = []] = techRows
 
 const root = ref<HTMLElement | null>(null)
-const trackA = ref<HTMLElement | null>(null)
-const trackB = ref<HTMLElement | null>(null)
+// Rangée 0 défile vers la gauche, rangée 1 vers la droite
+const tracks: (HTMLElement | null)[] = []
+
+// Luminance relative d'une couleur de marque (0 = noir, 1 = blanc)
+function luminance(hex: string) {
+  const weights = [0.2126, 0.7152, 0.0722]
+  return weights.reduce((sum, w, i) => {
+    const c = parseInt(hex.slice(i * 2, i * 2 + 2), 16) / 255
+    return sum + w * (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)
+  }, 0)
+}
+
+// Couleur de marque, éclaircie ou assombrie si elle manque de contraste avec le fond
+function colorOf(tech: Tech) {
+  const brand = `#${tech.hex}`
+  const l = luminance(tech.hex)
+  if (theme.value === 'dark') {
+    if (l < 0.02) return 'var(--text)'
+    if (l < 0.2) return `color-mix(in oklab, ${brand} 55%, white)`
+  } else if (l > 0.45) {
+    return `color-mix(in oklab, ${brand} 70%, black)`
+  }
+  return brand
+}
 
 let offset = 0
 let velocity = 0
@@ -26,15 +49,13 @@ function loop() {
   velocity += (Math.abs(delta) * 0.25 - velocity) * 0.1
   offset += (0.6 + velocity) * direction
 
-  for (const [track, sign] of [
-    [trackA.value, -1],
-    [trackB.value, 1],
-  ] as const) {
-    if (!track) continue
+  tracks.forEach((track, i) => {
+    if (!track) return
+    const sign = i === 0 ? -1 : 1
     const half = track.scrollWidth / 2
     const x = (((offset * sign) % half) + half) % half
     track.style.transform = `translate3d(${-x}px, 0, 0)`
-  }
+  })
   if (running) frame = requestAnimationFrame(loop)
 }
 
@@ -57,18 +78,23 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section ref="root" class="marquee" aria-label="Technologies et savoir-faire">
-    <div class="band back" aria-hidden="true">
-      <div ref="trackB" class="track">
+  <section ref="root" class="marquee" aria-label="Technologies maîtrisées">
+    <div v-for="(row, r) in [rowA, rowB]" :key="r" class="band">
+      <div :ref="(el) => (tracks[r] = el as HTMLElement | null)" class="track">
+        <!-- 4 copies pour une boucle sans couture ; seule la 1re est lue par les lecteurs d'écran -->
         <template v-for="n in 4" :key="n">
-          <span v-for="w in words2" :key="`${n}-${w}`" class="item outline">{{ w }} <i>✳</i></span>
-        </template>
-      </div>
-    </div>
-    <div class="band front">
-      <div ref="trackA" class="track">
-        <template v-for="n in 4" :key="n">
-          <span v-for="w in words" :key="`${n}-${w}`" class="item" :aria-hidden="n > 1">{{ w }} <i>✦</i></span>
+          <span
+            v-for="tech in row"
+            :key="`${n}-${tech.name}`"
+            class="tech"
+            :title="tech.name"
+            :role="n === 1 ? 'img' : undefined"
+            :aria-label="n === 1 ? tech.name : undefined"
+            :aria-hidden="n > 1 || undefined"
+            :style="{ color: colorOf(tech) }"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path :d="tech.path" /></svg>
+          </span>
         </template>
       </div>
     </div>
@@ -76,66 +102,58 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+/* Deux rangées de logos, sans fond, qui défilent en sens opposés */
 .marquee {
-  position: relative;
-  padding: 72px 0;
+  padding: 48px 0;
   overflow: hidden;
+  display: grid;
+  gap: 28px;
 }
 
 .band {
   overflow: hidden;
-  padding: 18px 0;
-  width: 110%;
-  margin-left: -5%;
-}
-
-.front {
-  position: relative;
-  z-index: 1;
-  background: var(--lime);
-  color: var(--navy-deep);
-  transform: rotate(-2.5deg);
-}
-
-.back {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  background: var(--blue);
-  transform: translateY(-50%) rotate(3deg);
+  /* Les logos apparaissent et disparaissent en fondu sur les bords */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
 
 .track {
   display: flex;
+  align-items: center;
   width: max-content;
   will-change: transform;
 }
 
-.item {
-  display: inline-flex;
-  align-items: center;
-  gap: 28px;
-  padding-right: 28px;
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.8rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  white-space: nowrap;
-  text-transform: uppercase;
+.tech {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-right: 72px;
+  flex-shrink: 0;
+  transition: scale 0.35s var(--ease-out), filter 0.35s;
 }
 
-.item i {
-  font-style: normal;
-  font-size: 0.7em;
+.tech svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
 }
 
-.outline {
-  color: transparent;
-  -webkit-text-stroke: 1.2px #eef3e4;
+.tech:hover {
+  scale: 1.18;
+  filter: drop-shadow(0 0 14px currentColor);
 }
 
-.outline i {
-  color: var(--lime);
-  -webkit-text-stroke: 0;
+@media (max-width: 600px) {
+  .marquee {
+    gap: 20px;
+    padding: 36px 0;
+  }
+  .tech {
+    width: 38px;
+    height: 38px;
+    margin-right: 48px;
+  }
 }
 </style>

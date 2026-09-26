@@ -447,6 +447,9 @@ onBeforeUnmount(() => {
 
 /* ---------- Scène ---------- */
 .stage {
+  /* Taille du carrousel : ajuste ces deux valeurs pour l'agrandir ou le réduire */
+  --slide-w: 800px;
+  --slide-h: 380px;
   --shift: 86%;
   position: relative;
   display: grid;
@@ -471,9 +474,9 @@ onBeforeUnmount(() => {
 
 .slide {
   grid-area: 1 / 1;
-  width: min(86vw, 940px);
+  width: min(86vw, var(--slide-w));
   display: grid;
-  border-radius: 28px;
+  border-radius: 24px;
   overflow: hidden;
   background: var(--bg-soft);
   border: 1px solid var(--border);
@@ -502,7 +505,7 @@ onBeforeUnmount(() => {
 @media (min-width: 900px) {
   .slide {
     grid-template-columns: 1.05fr 1fr;
-    min-height: 460px;
+    min-height: var(--slide-h);
   }
   /* Avec une vraie capture, l'aperçu prend plus de place */
   .slide.has-image {
@@ -628,7 +631,7 @@ onBeforeUnmount(() => {
 .initials {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(6rem, 16vw, 11rem);
+  font-size: clamp(4.5rem, 12vw, 8rem);
   letter-spacing: -0.06em;
   line-height: 1;
   color: transparent;
@@ -675,16 +678,16 @@ onBeforeUnmount(() => {
 
 /* ---------- Texte ---------- */
 .body {
-  padding: 28px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   transition: opacity 0.5s;
 }
 
 @media (min-width: 900px) {
   .body {
-    padding: 44px;
+    padding: 32px;
     justify-content: center;
   }
 }
@@ -704,36 +707,42 @@ onBeforeUnmount(() => {
 }
 
 h3 {
-  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
 }
 
 .role {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   color: var(--accent);
 }
 
 .summary {
   color: var(--text-muted);
-  font-size: 1.05rem;
+  font-size: 0.94rem;
+  line-height: 1.55;
 }
 
 .stack {
   list-style: none;
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
+}
+
+.stack .tag {
+  padding: 3px 9px;
+  font-size: 10.5px;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  margin-top: 10px;
-  font-size: 14px;
+  gap: 16px;
+  margin-top: 8px;
+  font-size: 13px;
   font-weight: 600;
 }
 
