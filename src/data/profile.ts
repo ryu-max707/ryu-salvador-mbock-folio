@@ -91,7 +91,7 @@ export const profile = {
 export const stats: Stat[] = [
   { value: 4, suffix: '+', label: "Années d'expérience", detail: 'Laravel, puis Flutter & Kotlin' },
   { value: 2, suffix: '+', label: 'Années de formation', detail: 'Formateur IT chez GSVTII' },
-  { value: 3, label: 'Entreprises', detail: 'Mamoni Finance, AfroLink, Memphys' },
+  { value: 4, label: 'Entreprises', detail: 'Mamoni Finance, AfroLink, Memphys, GSVTII ( Global Service Vocation Institute' },
   { value: 15, suffix: '+', label: 'Technologies', detail: 'Front, back, mobile & bases de données' },
 ]
 
