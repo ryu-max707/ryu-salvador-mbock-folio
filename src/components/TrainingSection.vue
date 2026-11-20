@@ -108,7 +108,7 @@ const steps = [
   left: 0;
   width: 48px;
   height: 1.5px;
-  background: var(--lime);
+  background: var(--gold);
   transition: width 0.6s var(--ease-out);
 }
 
@@ -167,7 +167,7 @@ const steps = [
 }
 
 .training:hover {
-  border-color: color-mix(in srgb, var(--lime) 55%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
 }
 
 /* Reflet qui suit la souris (variables posées par v-tilt) */
@@ -175,7 +175,7 @@ const steps = [
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 0%), color-mix(in srgb, var(--lime) 14%, transparent), transparent 55%);
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 0%), color-mix(in srgb, var(--gold) 14%, transparent), transparent 55%);
   opacity: 0;
   transition: opacity 0.3s;
   pointer-events: none;
@@ -209,12 +209,12 @@ const steps = [
 }
 
 .lvl-1 {
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
 }
 
 .lvl-2 {
-  background: var(--blue);
+  background: var(--violet);
   color: #fff;
 }
 

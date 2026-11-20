@@ -95,7 +95,7 @@ onBeforeUnmount(() => lock(false))
   display: grid;
   place-items: center;
   padding: 24px;
-  background: color-mix(in srgb, var(--navy-deep) 88%, transparent);
+  background: color-mix(in srgb, var(--plum-deep) 88%, transparent);
   backdrop-filter: blur(10px);
 }
 
@@ -106,8 +106,8 @@ onBeforeUnmount(() => lock(false))
   grid-template-rows: auto 1fr;
   border-radius: 22px;
   overflow: hidden;
-  background: var(--navy-deep);
-  border: 1px solid rgba(214, 228, 255, 0.14);
+  background: var(--plum-deep);
+  border: 1px solid rgba(232, 222, 240, 0.14);
   box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.8);
 }
 
@@ -117,8 +117,8 @@ header {
   justify-content: space-between;
   gap: 16px;
   padding: 14px 16px 14px 20px;
-  color: #eef3e4;
-  border-bottom: 1px solid rgba(214, 228, 255, 0.12);
+  color: #ece9f0;
+  border-bottom: 1px solid rgba(232, 222, 240, 0.12);
 }
 
 .title {
@@ -134,8 +134,8 @@ header {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
   flex-shrink: 0;
 }
 
@@ -149,7 +149,7 @@ header {
 .title small {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: rgba(238, 243, 228, 0.6);
+  color: rgba(236, 233, 240, 0.6);
 }
 
 .actions {
@@ -171,22 +171,22 @@ header {
 }
 
 .primary {
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
 }
 
 .primary:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 3px 3px 0 #eef3e4;
+  box-shadow: 3px 3px 0 #ece9f0;
 }
 
 .ghost {
-  border: 1.5px solid rgba(238, 243, 228, 0.25);
-  color: #eef3e4;
+  border: 1.5px solid rgba(236, 233, 240, 0.25);
+  color: #ece9f0;
 }
 
 .ghost:hover {
-  border-color: #eef3e4;
+  border-color: #ece9f0;
 }
 
 @media (max-width: 860px) {
@@ -201,17 +201,17 @@ header {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  border: 1.5px solid rgba(238, 243, 228, 0.25);
+  border: 1.5px solid rgba(236, 233, 240, 0.25);
   background: transparent;
-  color: #eef3e4;
+  color: #ece9f0;
   cursor: pointer;
   transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
 
 .close:hover {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-deep);
 }
 
 iframe {

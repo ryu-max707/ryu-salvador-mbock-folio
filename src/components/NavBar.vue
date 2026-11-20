@@ -143,8 +143,8 @@ watch(open, (value) => (document.body.style.overflow = value ? 'hidden' : ''))
   width: 38px;
   height: 38px;
   border-radius: 11px;
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
   font-size: 14px;
   font-weight: 800;
   rotate: -6deg;
@@ -176,7 +176,7 @@ watch(open, (value) => (document.body.style.overflow = value ? 'hidden' : ''))
   right: 13px;
   bottom: 3px;
   height: 2px;
-  background: var(--lime);
+  background: var(--gold);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s var(--ease-out);

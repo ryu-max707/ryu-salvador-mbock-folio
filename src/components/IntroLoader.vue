@@ -97,9 +97,9 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: space-between;
   background:
-    radial-gradient(120% 60% at 50% calc(130% - var(--p) * 1%), color-mix(in srgb, var(--lime) 35%, transparent), transparent 60%),
-    var(--navy-deep);
-  color: #eef3e4;
+    radial-gradient(120% 60% at 50% calc(130% - var(--p) * 1%), color-mix(in srgb, var(--gold) 35%, transparent), transparent 60%),
+    var(--plum-deep);
+  color: #ece9f0;
   overflow: hidden;
 }
 
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(238, 243, 228, 0.65);
+  color: rgba(236, 233, 240, 0.65);
 }
 
 .word {
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
   /* Sans crénage, le texte plein de ::after se cale exactement sur les lettres détourées */
   font-kerning: none;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(238, 243, 228, 0.22);
+  -webkit-text-stroke: 1.5px rgba(236, 233, 240, 0.22);
 }
 
 @media (max-width: 520px) {
@@ -152,7 +152,7 @@ onBeforeUnmount(() => {
   content: attr(data-text);
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--lime) 0%, #7fe0b4 45%, var(--blue) 100%);
+  background: linear-gradient(to top, var(--gold) 0%, var(--gold-soft) 35%, var(--silver) 65%, var(--violet) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-stroke: 0;
@@ -172,12 +172,12 @@ onBeforeUnmount(() => {
   font-weight: 700;
   line-height: 0.8;
   letter-spacing: -0.04em;
-  color: #eef3e4;
+  color: #ece9f0;
 }
 
 .count small {
   font-size: 0.35em;
-  color: var(--lime);
+  color: var(--gold);
   margin-left: 4px;
 }
 
@@ -188,7 +188,7 @@ onBeforeUnmount(() => {
 .role em {
   font-family: var(--font-serif);
   font-size: 1.6em;
-  color: var(--lime);
+  color: var(--gold);
   text-transform: none;
 }
 
@@ -212,7 +212,7 @@ onBeforeUnmount(() => {
 .sweep {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--lime) 0%, #58d6a6 40%, var(--blue) 75%, var(--navy) 100%);
+  background: linear-gradient(to top, var(--gold) 0%, var(--silver) 40%, var(--violet) 75%, var(--plum) 100%);
   clip-path: inset(100% 0 0 0);
 }
 

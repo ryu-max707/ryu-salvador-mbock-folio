@@ -66,20 +66,20 @@ import { expertises } from '@/data/profile'
   }
 }
 
-/* Remplissage citron qui monte au survol */
+/* Remplissage doré qui monte au survol */
 .row::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: var(--lime);
+  background: var(--gold);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.55s var(--ease-out);
 }
 
 .row:hover {
-  color: var(--navy-deep);
+  color: var(--plum-deep);
 }
 
 .row:hover::before {
@@ -153,11 +153,11 @@ p {
 .row:hover p,
 .row:hover .icon,
 .row:hover .tag {
-  color: var(--navy-deep);
+  color: var(--plum-deep);
 }
 
 .row:hover .tag {
-  border-color: color-mix(in srgb, var(--navy-deep) 30%, transparent);
+  border-color: color-mix(in srgb, var(--plum-deep) 30%, transparent);
 }
 
 .row:hover .icon {

@@ -72,7 +72,7 @@ function onHeroMove(e: PointerEvent) {
         </p>
 
         <h1>
-          <span class="line" v-reveal.split="120">
+          <span class="line silver" v-reveal.split="120">
             <SplitText :text="profile.headline[0] ?? ''" by="char" :stagger="32" />
           </span>
           <span class="line" v-reveal.split="420">
@@ -124,7 +124,7 @@ function onHeroMove(e: PointerEvent) {
   inset: 0;
   background: radial-gradient(
     560px circle at var(--hx, 72%) var(--hy, 35%),
-    color-mix(in srgb, var(--lime) 9%, transparent),
+    color-mix(in srgb, var(--gold) 9%, transparent),
     transparent 65%
   );
   mask-image: linear-gradient(to bottom, #000 60%, transparent);
@@ -174,8 +174,8 @@ function onHeroMove(e: PointerEvent) {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--lime);
-  box-shadow: 0 0 0 0 var(--lime);
+  background: var(--gold);
+  box-shadow: 0 0 0 0 var(--gold);
   animation: pulse 2s infinite;
 }
 
@@ -226,6 +226,32 @@ h1 .serif {
   color: var(--accent);
 }
 
+/* Effet métal, lettre par lettre (un dégradé vertical reste continu d'une lettre à l'autre) :
+   « Développeur » en argent, « Formateur » en or */
+.silver :deep(.split-unit),
+.accent :deep(.split-unit) {
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.silver :deep(.split-unit) {
+  background-image: linear-gradient(180deg, #ffffff 10%, var(--silver) 55%, #8d8798 100%);
+}
+
+.accent :deep(.split-unit) {
+  background-image: linear-gradient(180deg, var(--gold-soft) 15%, var(--gold) 55%, #a8842f 100%);
+}
+
+/* En thème clair, l'argent manquerait de contraste : on passe en aubergine profond */
+:root[data-theme='light'] .silver :deep(.split-unit) {
+  background-image: linear-gradient(180deg, #4b1f50 0%, #2a1030 100%);
+}
+
+:root[data-theme='light'] .accent :deep(.split-unit) {
+  background-image: linear-gradient(180deg, #b48a2c 10%, #7a3585 100%);
+}
+
 .typed {
   font-family: var(--font-mono);
   font-size: clamp(0.95rem, 2vw, 1.1rem);
@@ -239,7 +265,7 @@ h1 .serif {
 
 .word {
   color: var(--text);
-  background: color-mix(in srgb, var(--lime) 18%, transparent);
+  background: color-mix(in srgb, var(--gold) 18%, transparent);
   padding: 0 4px;
 }
 
@@ -253,7 +279,7 @@ h1 .serif {
   height: 1.15em;
   margin-left: 2px;
   vertical-align: text-bottom;
-  background: var(--lime);
+  background: var(--gold);
   animation: blink 1s steps(1) infinite;
 }
 
@@ -315,7 +341,7 @@ h1 .serif {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--lime);
+  background: var(--gold);
   animation: drip 1.8s var(--ease-in-out) infinite;
 }
 

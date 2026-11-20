@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
   height: 38px;
   margin: -19px 0 0 -19px;
   border-radius: 50%;
-  border: 1.5px solid var(--lime);
+  border: 1.5px solid var(--gold);
   display: grid;
   place-items: center;
   opacity: 0;
@@ -116,7 +116,7 @@ onBeforeUnmount(() => {
   width: 64px;
   height: 64px;
   margin: -32px 0 0 -32px;
-  background: var(--lime);
+  background: var(--gold);
 }
 
 .ring.pressed {
@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--navy-deep);
+  color: var(--plum-deep);
   opacity: 0;
   transition: opacity 0.2s;
 }
@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
   width: 96px;
   height: 96px;
   margin: -48px 0 0 -48px;
-  background: var(--lime);
+  background: var(--gold);
   mix-blend-mode: normal;
 }
 
@@ -151,7 +151,7 @@ onBeforeUnmount(() => {
   height: 6px;
   margin: -3px 0 0 -3px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--gold);
   opacity: 0;
   transition: opacity 0.2s;
 }

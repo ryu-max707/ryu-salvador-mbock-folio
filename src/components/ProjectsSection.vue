@@ -392,9 +392,9 @@ onBeforeUnmount(() => {
 }
 
 .filters button.active {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--on-lime);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--on-gold);
 }
 
 .nav {
@@ -430,9 +430,9 @@ onBeforeUnmount(() => {
 }
 
 .arrow:hover:not(:disabled) {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--on-lime);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--on-gold);
   transform: scale(1.08);
 }
 
@@ -468,7 +468,7 @@ onBeforeUnmount(() => {
 }
 
 .stage:focus-visible .slide.active {
-  outline: 2px solid var(--lime);
+  outline: 2px solid var(--gold);
   outline-offset: 6px;
 }
 
@@ -535,8 +535,8 @@ onBeforeUnmount(() => {
   overflow: hidden;
   display: grid;
   place-items: center;
-  background: var(--navy);
-  color: #eef3e4;
+  background: var(--plum);
+  color: #ece9f0;
 }
 
 .cover img {
@@ -565,8 +565,8 @@ onBeforeUnmount(() => {
   font: inherit;
   font-size: 13px;
   font-weight: 600;
-  background: color-mix(in srgb, var(--navy-deep) 82%, transparent);
-  color: #eef3e4;
+  background: color-mix(in srgb, var(--plum-deep) 82%, transparent);
+  color: #ece9f0;
   backdrop-filter: blur(8px);
   cursor: pointer;
   opacity: 0;
@@ -575,7 +575,7 @@ onBeforeUnmount(() => {
 }
 
 .zoom :deep(svg) {
-  color: var(--lime);
+  color: var(--gold);
 }
 
 .slide.active .cover:hover .zoom,
@@ -585,12 +585,12 @@ onBeforeUnmount(() => {
 }
 
 .zoom:hover {
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
 }
 
 .zoom:hover :deep(svg) {
-  color: var(--navy-deep);
+  color: var(--plum-deep);
 }
 
 /* Pas de survol au tactile : bouton toujours visible sur la slide active */
@@ -603,20 +603,20 @@ onBeforeUnmount(() => {
 
 .cover[data-variant='0'] {
   background:
-    radial-gradient(circle at 25% 75%, var(--lime), transparent 42%),
-    radial-gradient(circle at 85% 15%, var(--blue), transparent 50%),
-    var(--navy);
+    radial-gradient(circle at 25% 75%, var(--gold), transparent 42%),
+    radial-gradient(circle at 85% 15%, var(--violet), transparent 50%),
+    var(--plum);
 }
 
 .cover[data-variant='1'] {
   background:
-    radial-gradient(circle at 70% 60%, var(--blue) 0 22%, transparent 22.5%),
-    repeating-linear-gradient(135deg, color-mix(in srgb, var(--lime) 55%, transparent) 0 2px, transparent 2px 16px),
-    var(--navy-deep);
+    radial-gradient(circle at 70% 60%, var(--violet) 0 22%, transparent 22.5%),
+    repeating-linear-gradient(135deg, color-mix(in srgb, var(--gold) 55%, transparent) 0 2px, transparent 2px 16px),
+    var(--plum-deep);
 }
 
 .cover[data-variant='2'] {
-  background: conic-gradient(from 210deg at 65% 55%, var(--lime), var(--blue), var(--navy-deep), var(--lime));
+  background: conic-gradient(from 210deg at 65% 55%, var(--gold), var(--violet), var(--plum-deep), var(--gold));
 }
 
 .num {
@@ -635,7 +635,7 @@ onBeforeUnmount(() => {
   letter-spacing: -0.06em;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 2px #eef3e4;
+  -webkit-text-stroke: 2px #ece9f0;
   transition: transform 1s var(--ease-out);
 }
 
@@ -662,8 +662,8 @@ onBeforeUnmount(() => {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 700;
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
 }
 
 .cover .noise {
@@ -753,7 +753,7 @@ h3 {
   gap: 6px;
   padding: 0 0 2px;
   border: 0;
-  border-bottom: 1.5px solid var(--lime);
+  border-bottom: 1.5px solid var(--gold);
   background: none;
   color: inherit;
   font: inherit;
@@ -806,8 +806,8 @@ h3 {
 
 .dots button.active {
   width: 34px;
-  background: var(--lime);
-  border-color: var(--lime);
+  background: var(--gold);
+  border-color: var(--gold);
 }
 
 .progress {

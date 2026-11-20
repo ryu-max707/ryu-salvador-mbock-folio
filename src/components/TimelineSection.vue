@@ -127,7 +127,7 @@ onBeforeUnmount(() => {
 }
 
 .timeline::after {
-  background: linear-gradient(var(--lime), var(--blue));
+  background: linear-gradient(var(--gold), var(--violet));
   transform: scaleY(var(--progress, 0));
   transform-origin: top;
 }
@@ -154,15 +154,15 @@ onBeforeUnmount(() => {
 }
 
 .lit .marker {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-deep);
   transform: scale(1.1);
 }
 
 .lit .marker.formation {
-  background: var(--blue);
-  border-color: var(--blue);
+  background: var(--violet);
+  border-color: var(--violet);
   color: #fff;
 }
 
@@ -177,7 +177,7 @@ onBeforeUnmount(() => {
 }
 
 .entry:hover {
-  border-color: color-mix(in srgb, var(--lime) 55%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
   translate: 6px 0;
 }
 

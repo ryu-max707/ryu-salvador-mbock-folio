@@ -103,9 +103,9 @@ const requestMessage = 'Bonjour Salvador, je consulte votre portfolio. Pourriez-
 }
 
 .quote.alt {
-  background: var(--lime);
-  color: var(--navy-deep);
-  border-color: var(--lime);
+  background: var(--gold);
+  color: var(--plum-deep);
+  border-color: var(--gold);
 }
 
 .mark {
@@ -113,7 +113,7 @@ const requestMessage = 'Bonjour Salvador, je consulte votre portfolio. Pourriez-
 }
 
 .quote.alt .mark {
-  color: var(--navy-deep);
+  color: var(--plum-deep);
 }
 
 blockquote {
@@ -139,7 +139,7 @@ figcaption small {
 }
 
 .quote.alt figcaption small {
-  color: color-mix(in srgb, var(--navy-deep) 70%, transparent);
+  color: color-mix(in srgb, var(--plum-deep) 70%, transparent);
 }
 
 .avatar {
@@ -148,14 +148,14 @@ figcaption small {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
   font-weight: 700;
 }
 
 .quote.alt .avatar {
-  background: var(--navy-deep);
-  color: var(--lime);
+  background: var(--plum-deep);
+  color: var(--gold);
 }
 
 /* ---------- Références ---------- */
@@ -185,13 +185,13 @@ figcaption small {
 }
 
 .ref:hover {
-  border-color: color-mix(in srgb, var(--lime) 55%, transparent);
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
 }
 
 .ref.alt {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-deep);
 }
 
 .initial {
@@ -203,13 +203,13 @@ figcaption small {
   font-family: var(--font-display);
   font-size: 24px;
   font-weight: 800;
-  background: var(--navy);
-  color: var(--lime);
+  background: var(--plum);
+  color: var(--gold);
   border: 1px solid var(--border);
 }
 
 .ref.alt .initial {
-  background: var(--navy-deep);
+  background: var(--plum-deep);
 }
 
 .who {
@@ -229,7 +229,7 @@ figcaption small {
 }
 
 .ref.alt .company {
-  color: var(--navy-deep);
+  color: var(--plum-deep);
 }
 
 .context {
@@ -238,7 +238,7 @@ figcaption small {
 }
 
 .ref.alt .context {
-  color: color-mix(in srgb, var(--navy-deep) 75%, transparent);
+  color: color-mix(in srgb, var(--plum-deep) 75%, transparent);
 }
 
 .badge {
@@ -259,12 +259,12 @@ figcaption small {
 }
 
 .ref.alt .badge {
-  border-color: color-mix(in srgb, var(--navy-deep) 30%, transparent);
-  color: var(--navy-deep);
+  border-color: color-mix(in srgb, var(--plum-deep) 30%, transparent);
+  color: var(--plum-deep);
 }
 
 .ref.alt .badge :deep(svg) {
-  color: var(--navy-deep);
+  color: var(--plum-deep);
 }
 
 .ask {

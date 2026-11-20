@@ -43,22 +43,22 @@ onBeforeUnmount(() => {
       <span>{{ profile.location }}</span>
     </p>
 
-    <!-- Bichromie : noir → marine, blanc → gris bleuté (sombre) ou papier (clair) -->
+    <!-- Bichromie : noir → aubergine, blanc → argent (sombre) ou nacre (clair) -->
     <svg width="0" height="0" class="defs">
       <filter id="backdrop-dark" color-interpolation-filters="sRGB">
         <feColorMatrix type="saturate" values="0" />
         <feComponentTransfer>
-          <feFuncR type="table" tableValues="0.012 0.2 0.7" />
-          <feFuncG type="table" tableValues="0.035 0.26 0.76" />
-          <feFuncB type="table" tableValues="0.09 0.42 0.86" />
+          <feFuncR type="table" tableValues="0.06 0.3 0.8" />
+          <feFuncG type="table" tableValues="0.025 0.2 0.78" />
+          <feFuncB type="table" tableValues="0.075 0.34 0.85" />
         </feComponentTransfer>
       </filter>
       <filter id="backdrop-light" color-interpolation-filters="sRGB">
         <feColorMatrix type="saturate" values="0" />
         <feComponentTransfer>
-          <feFuncR type="table" tableValues="0.04 0.95" />
-          <feFuncG type="table" tableValues="0.12 0.957" />
-          <feFuncB type="table" tableValues="0.27 0.918" />
+          <feFuncR type="table" tableValues="0.165 0.957" />
+          <feFuncG type="table" tableValues="0.063 0.945" />
+          <feFuncB type="table" tableValues="0.188 0.961" />
         </feComponentTransfer>
       </filter>
     </svg>

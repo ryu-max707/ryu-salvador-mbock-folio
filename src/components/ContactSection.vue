@@ -93,8 +93,9 @@ function send() {
   display: grid;
   gap: 40px;
   border-radius: 32px;
-  background: var(--lime);
-  color: var(--navy-deep);
+  /* Feuille d'or : reflet clair en haut à gauche, or plus profond en bas */
+  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 45%, #b8923e 100%);
+  color: var(--plum-deep);
   isolation: isolate;
 }
 
@@ -129,7 +130,7 @@ function send() {
   z-index: -1;
   font-size: 320px;
   line-height: 1;
-  color: color-mix(in srgb, var(--navy-deep) 8%, transparent);
+  color: color-mix(in srgb, var(--plum-deep) 8%, transparent);
   animation: spin 30s linear infinite;
   pointer-events: none;
 }
@@ -170,7 +171,7 @@ h2 .serif {
 .pitch > p {
   font-size: 1.1rem;
   max-width: 520px;
-  color: color-mix(in srgb, var(--navy-deep) 78%, transparent);
+  color: color-mix(in srgb, var(--plum-deep) 78%, transparent);
 }
 
 .channels {
@@ -185,23 +186,23 @@ h2 .serif {
 }
 
 .btn-primary {
-  background: var(--navy-deep);
-  border-color: var(--navy-deep);
-  color: var(--lime);
+  background: var(--plum-deep);
+  border-color: var(--plum-deep);
+  color: var(--gold);
 }
 
 .btn-primary:hover {
-  box-shadow: 4px 4px 0 #f2f4ea;
+  box-shadow: 4px 4px 0 #f4f1f5;
 }
 
 .btn-ghost {
-  color: var(--navy-deep);
-  border-color: color-mix(in srgb, var(--navy-deep) 35%, transparent);
+  color: var(--plum-deep);
+  border-color: color-mix(in srgb, var(--plum-deep) 35%, transparent);
 }
 
 .btn-ghost:hover {
-  border-color: var(--navy-deep);
-  box-shadow: 4px 4px 0 var(--navy-deep);
+  border-color: var(--plum-deep);
+  box-shadow: 4px 4px 0 var(--plum-deep);
 }
 
 .offers {
@@ -226,8 +227,8 @@ h2 .serif {
   align-content: start;
   padding: 24px;
   border-radius: 24px;
-  background: var(--navy-deep);
-  color: #eef3e4;
+  background: var(--plum-deep);
+  color: #ece9f0;
 }
 
 @media (min-width: 768px) {
@@ -249,9 +250,9 @@ textarea {
   width: 100%;
   padding: 13px 16px;
   border-radius: 14px;
-  border: 1px solid rgba(214, 228, 255, 0.16);
+  border: 1px solid rgba(232, 222, 240, 0.16);
   background: rgba(255, 255, 255, 0.04);
-  color: #eef3e4;
+  color: #ece9f0;
   font: inherit;
   font-size: 15px;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -259,11 +260,11 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(238, 243, 228, 0.4);
+  color: rgba(236, 233, 240, 0.4);
 }
 
 select option {
-  background: var(--navy-deep);
+  background: var(--plum-deep);
 }
 
 textarea {
@@ -274,17 +275,17 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--lime);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--lime) 20%, transparent);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--gold) 20%, transparent);
 }
 
 .form .btn-primary {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-deep);
 }
 
 .form .btn-primary:hover {
-  box-shadow: 4px 4px 0 #eef3e4;
+  box-shadow: 4px 4px 0 #ece9f0;
 }
 </style>

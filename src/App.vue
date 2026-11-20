@@ -12,7 +12,7 @@ import ProjectsSection from './components/ProjectsSection.vue'
 import TrainingSection from './components/TrainingSection.vue'
 import TimelineSection from './components/TimelineSection.vue'
 import TestimonialsSection from './components/TestimonialsSection.vue'
-import BugGame from './components/BugGame.vue'
+import RunnerGame from './components/RunnerGame.vue'
 import ContactSection from './components/ContactSection.vue'
 import FooterBar from './components/FooterBar.vue'
 import CvViewer from './components/CvViewer.vue'
@@ -33,7 +33,7 @@ import CvViewer from './components/CvViewer.vue'
     <TrainingSection />
     <TimelineSection />
     <TestimonialsSection />
-    <BugGame />
+    <RunnerGame />
     <ContactSection />
   </main>
   <FooterBar />

@@ -5,27 +5,29 @@
 }
 
 :root {
-  /* Palette : bleu marine × vert citron */
-  --lime: #c6f135;
-  --lime-soft: #e3fa8f;
-  --navy: #0a1f44;
-  --navy-deep: #050e22;
-  --blue: #3d6bff;
+  /* Palette : violet aubergine × doré × argenté */
+  --gold: #d9b45b;
+  --gold-soft: #f0dca0;
+  --silver: #c8c5d0;
+  --plum: #4b1f50;
+  --plum-deep: #170a1b;
+  --violet: #8c4d99;
 
-  --bg: var(--navy-deep);
-  --bg-soft: #0a1a38;
-  --bg-elev: #0e2248;
+  --bg: var(--plum-deep);
+  --bg-soft: #22102a;
+  --bg-elev: #2a1230;
   --surface: rgba(255, 255, 255, 0.035);
   --surface-strong: rgba(255, 255, 255, 0.07);
-  --border: rgba(214, 228, 255, 0.11);
-  --text: #eef3e4;
-  --text-muted: #93a2bf;
-  --accent: var(--lime);
-  --accent-2: #86a8ff;
-  --on-lime: var(--navy-deep);
-  --success: var(--lime);
-  --gradient: linear-gradient(115deg, var(--lime) 0%, #58d6a6 45%, var(--blue) 100%);
-  --text-gradient: linear-gradient(100deg, var(--lime) 10%, #7fe0b4 50%, var(--accent-2) 95%);
+  --border: rgba(232, 222, 240, 0.11);
+  --text: #ece9f0;
+  --text-muted: #a99fb4;
+  --accent: var(--gold);
+  --accent-2: var(--silver);
+  --on-gold: var(--plum-deep);
+  --success: var(--gold);
+  /* Dégradé « métal » : or → argent → violet */
+  --gradient: linear-gradient(115deg, var(--gold) 0%, var(--silver) 50%, var(--violet) 100%);
+  --text-gradient: linear-gradient(100deg, var(--gold) 10%, var(--gold-soft) 45%, var(--silver) 90%);
   --shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.75);
   --radius: 22px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -39,25 +41,20 @@
   color-scheme: dark;
 }
 
-@supports (background: linear-gradient(in oklch, red, blue)) {
-  :root {
-    --gradient: linear-gradient(115deg in oklch, var(--lime), var(--blue));
-  }
-}
-
+/* Thème clair : fond nacré argenté, texte aubergine, accents violet et or foncé */
 :root[data-theme='light'] {
-  --bg: #f2f4ea;
-  --bg-soft: #e7ebdb;
+  --bg: #f4f1f5;
+  --bg-soft: #e9e4ec;
   --bg-elev: #ffffff;
-  --surface: rgba(10, 31, 68, 0.035);
-  --surface-strong: rgba(10, 31, 68, 0.07);
-  --border: rgba(10, 31, 68, 0.14);
-  --text: var(--navy);
-  --text-muted: #4b5a78;
-  --accent: #2446c7;
-  --accent-2: #4a7300;
-  --text-gradient: linear-gradient(100deg, var(--navy) 10%, #2446c7 60%, #4a7300 100%);
-  --shadow: 0 30px 60px -32px rgba(10, 31, 68, 0.35);
+  --surface: rgba(75, 31, 80, 0.035);
+  --surface-strong: rgba(75, 31, 80, 0.07);
+  --border: rgba(75, 31, 80, 0.14);
+  --text: #2a1030;
+  --text-muted: #6a5872;
+  --accent: #7a3585;
+  --accent-2: #8a6a1f;
+  --text-gradient: linear-gradient(100deg, #2a1030 10%, #7a3585 60%, #8a6a1f 100%);
+  --shadow: 0 30px 60px -32px rgba(42, 16, 48, 0.35);
   color-scheme: light;
 }
 
@@ -139,8 +136,8 @@ p {
 }
 
 ::selection {
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
 }
 
 .container {
@@ -198,7 +195,7 @@ p {
   content: '';
   width: 10px;
   height: 10px;
-  background: var(--lime);
+  background: var(--gold);
   border-radius: 2px;
   transform: rotate(45deg);
 }
@@ -241,9 +238,9 @@ p {
 }
 
 .btn-primary {
-  background: var(--lime);
-  color: var(--on-lime);
-  border-color: var(--lime);
+  background: var(--gold);
+  color: var(--on-gold);
+  border-color: var(--gold);
 }
 
 .btn-primary:hover {
@@ -260,11 +257,11 @@ p {
 .btn-ghost:hover {
   border-color: var(--text);
   transform: translate(-3px, -3px);
-  box-shadow: 4px 4px 0 var(--lime);
+  box-shadow: 4px 4px 0 var(--gold);
 }
 
 :focus-visible {
-  outline: 2px solid var(--lime);
+  outline: 2px solid var(--gold);
   outline-offset: 3px;
   border-radius: 6px;
 }

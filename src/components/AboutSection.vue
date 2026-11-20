@@ -104,14 +104,14 @@ function onPhotoDown(e: PointerEvent) {
       </div>
     </div>
 
-    <!-- Filtre bichromie marine → bleu → citron appliqué à la photo au survol -->
+    <!-- Filtre bichromie aubergine → violet → or appliqué à la photo au survol -->
     <svg class="defs" width="0" height="0" aria-hidden="true">
       <filter id="duotone-ryu" color-interpolation-filters="sRGB">
         <feColorMatrix type="matrix" values="0.3 0.59 0.11 0 0  0.3 0.59 0.11 0 0  0.3 0.59 0.11 0 0  0 0 0 1 0" />
         <feComponentTransfer>
-          <feFuncR type="table" tableValues="0.02 0.14 0.78 0.94" />
-          <feFuncG type="table" tableValues="0.055 0.27 0.95 0.99" />
-          <feFuncB type="table" tableValues="0.13 0.78 0.21 0.75" />
+          <feFuncR type="table" tableValues="0.09 0.55 0.85 0.94" />
+          <feFuncG type="table" tableValues="0.04 0.3 0.706 0.86" />
+          <feFuncB type="table" tableValues="0.106 0.6 0.357 0.63" />
         </feComponentTransfer>
       </filter>
     </svg>
@@ -157,7 +157,7 @@ function onPhotoDown(e: PointerEvent) {
   position: absolute;
   inset: 0;
   border-radius: 28px;
-  background: var(--lime);
+  background: var(--gold);
   transform: translate(18px, 18px) rotate(3deg);
   transition: transform 0.8s var(--ease-out);
 }
@@ -231,8 +231,8 @@ function onPhotoDown(e: PointerEvent) {
   border-radius: 999px;
   font-family: var(--font-mono);
   font-size: 11px;
-  background: color-mix(in srgb, var(--navy-deep) 70%, transparent);
-  color: #eef3e4;
+  background: color-mix(in srgb, var(--plum-deep) 70%, transparent);
+  color: #ece9f0;
   backdrop-filter: blur(6px);
   transition: opacity 0.4s, translate 0.4s;
 }
@@ -250,7 +250,7 @@ function onPhotoDown(e: PointerEvent) {
   font-family: var(--font-display);
   font-size: 8rem;
   font-weight: 800;
-  color: var(--lime);
+  color: var(--gold);
 }
 
 .sticker {
@@ -262,9 +262,9 @@ function onPhotoDown(e: PointerEvent) {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--navy-deep);
-  border: 1.5px solid var(--lime);
-  color: var(--lime);
+  background: var(--plum-deep);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
   z-index: 2;
 }
 
@@ -307,9 +307,9 @@ function onPhotoDown(e: PointerEvent) {
   font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.6;
-  background: #0e2248;
-  color: #dfe7f5;
-  border: 1px solid rgba(214, 228, 255, 0.14);
+  background: #2a1230;
+  color: #e6e1ec;
+  border: 1px solid rgba(232, 222, 240, 0.14);
 }
 
 .code pre {
@@ -330,15 +330,15 @@ function onPhotoDown(e: PointerEvent) {
 }
 
 .dots i:first-child {
-  background: var(--lime);
+  background: var(--gold);
 }
 
 .k {
-  color: #86a8ff;
+  color: #cdb8de;
 }
 
 .s {
-  color: var(--lime);
+  color: var(--gold);
 }
 
 .location {

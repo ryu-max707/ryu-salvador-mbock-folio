@@ -123,7 +123,7 @@ onBeforeUnmount(() => lock(false))
   display: grid;
   place-items: center;
   padding: 72px 16px 24px;
-  background: color-mix(in srgb, var(--navy-deep) 88%, transparent);
+  background: color-mix(in srgb, var(--plum-deep) 88%, transparent);
   backdrop-filter: blur(10px);
 }
 
@@ -157,7 +157,7 @@ figcaption {
   justify-content: space-between;
   align-items: center;
   gap: 10px 16px;
-  color: #eef3e4;
+  color: #ece9f0;
 }
 
 figcaption strong {
@@ -170,7 +170,7 @@ figcaption strong {
 figcaption small {
   font-family: var(--font-mono);
   font-size: 12px;
-  color: rgba(238, 243, 228, 0.6);
+  color: rgba(236, 233, 240, 0.6);
 }
 
 .side {
@@ -188,20 +188,20 @@ figcaption small {
   border-radius: 999px;
   font-size: 13px;
   font-weight: 600;
-  background: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  color: var(--plum-deep);
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 
 .visit:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 3px 3px 0 #eef3e4;
+  box-shadow: 3px 3px 0 #ece9f0;
 }
 
 .count {
   font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--lime);
+  color: var(--gold);
 }
 
 .ctrl {
@@ -211,17 +211,17 @@ figcaption small {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 1.5px solid rgba(238, 243, 228, 0.35);
-  background: color-mix(in srgb, var(--navy-deep) 60%, transparent);
-  color: #eef3e4;
+  border: 1.5px solid rgba(236, 233, 240, 0.35);
+  background: color-mix(in srgb, var(--plum-deep) 60%, transparent);
+  color: #ece9f0;
   cursor: pointer;
   transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.3s var(--ease-out);
 }
 
 .ctrl:hover {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--navy-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-deep);
   transform: scale(1.08);
 }
 
