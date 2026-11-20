@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import AppIcon from './AppIcon.vue'
 import SectionHeading from './SectionHeading.vue'
+import { audioState, playSfx, soundMuted, toggleSound, unlockAudio } from '@/utils/gameAudio'
 
 /* ---------- Réglages du jeu ---------- */
 // Le monde a une hauteur logique fixe ; sa largeur s'adapte à l'écran (mais jamais moins de MIN_W).
@@ -393,6 +395,7 @@ function startLevel(n: number) {
   stageStart = distance
   targetNight = isNight(n) ? 1 : 0
   nextSpawn = speed * 1.6 // un peu de calme pour découvrir le niveau
+  playSfx(n === 1 ? 'start' : isNight(n) ? 'levelNight' : 'levelDay')
   showBanner(`Niveau ${n}`, `${isNight(n) ? '☾ Nuit' : '☀ Jour'} · ${levelSub(n)}`, 'level', 2800)
 }
 
@@ -417,6 +420,7 @@ function jump() {
   player.vy = -JUMP
   player.onGround = false
   burst(PX + PW / 2, GROUND, 6, C.silver, 120)
+  playSfx('jump')
 }
 
 // Le tir se verrouille sur l'ennemi le plus proche, qu'on soit au sol ou en l'air
@@ -450,11 +454,13 @@ function shoot() {
     // Plus d'énergie : petit « clic » dans le vide
     burst(sx, sy, 3, C.silver, 60)
     canShootAt = performance.now() + 120
+    playSfx('empty')
     return
   }
   ammo -= 1
   canShootAt = performance.now() + SHOT_COOLDOWN * 1000
   lastShotAt = time
+  playSfx('shoot')
   const target = pickTarget(sx)
   let vx = SHOT_SPEED
   let vy = 0
@@ -471,6 +477,7 @@ function shoot() {
 
 /** Clic, appui ou Espace : démarre, reprend, saute — ou tire si c'est le 2e clic d'un double-clic. */
 function tap() {
+  unlockAudio()
   if (phase.value === 'paused') return resume()
   if (phase.value === 'idle') return start()
   if (phase.value === 'over') {
@@ -484,6 +491,7 @@ function tap() {
 }
 
 function onPointer(e: PointerEvent) {
+  unlockAudio()
   if (e.button === 2) {
     // Clic droit : tirer sans sauter
     e.preventDefault()
@@ -496,6 +504,12 @@ function onPointer(e: PointerEvent) {
 }
 
 function onKey(e: KeyboardEvent) {
+  unlockAudio()
+  if (e.key === 'm' || e.key === 'M') {
+    e.preventDefault()
+    if (!e.repeat) toggleSound()
+    return
+  }
   if (['f', 'F', 'x', 'X', 'ArrowRight'].includes(e.key)) {
     e.preventDefault()
     if (!e.repeat) shoot()
@@ -508,6 +522,7 @@ function onKey(e: KeyboardEvent) {
 
 function die() {
   phase.value = 'over'
+  playSfx('die')
   overAt = performance.now()
   clearBanner()
   bossInfo.value = null
@@ -523,6 +538,7 @@ function die() {
     best.value = { score: Math.max(s, best.value.score), level: Math.max(level, best.value.level) }
     saveBest(best.value)
   }
+  if (newBest.value) playSfx('record')
 }
 
 function hurtPlayer() {
@@ -654,6 +670,7 @@ function chooseAttack(b: Boss) {
   b.pending = kind
   b.last = kind
   b.windup = (kind === 'charge' ? 0.85 : 0.5) * (rage ? 0.8 : 1) // le boss clignote : à toi de lire l'attaque
+  playSfx(kind === 'charge' ? 'warnCharge' : 'warn')
 }
 
 function fire(b: Boss, what: 'orb' | 'bolt' | 'drone') {
@@ -664,11 +681,13 @@ function fire(b: Boss, what: 'orb' | 'bolt' | 'drone') {
   else if (what === 'bolt') enemies.push(makeEnemy('bolt', x, { y: GROUND - 80, extra: 170 * boost }))
   else enemies.push(makeEnemy('drone', x, { extra: 100 * boost }))
   burst(x, b.y + b.def.h / 2, 6, C.danger, 140)
+  playSfx('bossShot')
 }
 
 function execAttack(b: Boss, kind: AttackKind) {
   if (kind === 'charge') {
     b.state = 'charge'
+    playSfx('rumble')
     return
   }
   if (kind === 'orb') fire(b, 'orb')
@@ -740,6 +759,7 @@ function updateBoss(b: Boss, dt: number) {
 }
 
 function hitBoss(b: Boss) {
+  playSfx('bossHit')
   b.hp -= 1
   b.hurt = 0.12
   addPoints(5)
@@ -747,6 +767,7 @@ function hitBoss(b: Boss) {
   if (bossInfo.value) bossInfo.value = { name: bossInfo.value.name, pct: Math.max(0, b.hp / b.maxHp) }
   if (b.hp > 0) return
 
+  playSfx('bossDown')
   // Boss vaincu : tout explose, puis on passe au niveau suivant
   b.state = 'dying'
   b.t = 0
@@ -770,6 +791,7 @@ const addPoints = (base: number) => (points += base * multiplier())
 
 function killEnemy(o: Enemy) {
   kills++
+  playSfx('kill')
   addPoints(o.kind === 'charger' ? 25 : 12)
   burst(o.x + o.w / 2, o.y + o.h / 2, 12, o.kind === 'ghost' ? C.silver : C.danger, 190)
 }
@@ -794,6 +816,7 @@ function updateStage(dt: number, step: number) {
       if (distance - stageStart >= stageLength(level)) {
         stage = 'warning'
         stageTimer = 2.6
+        playSfx('alarm')
         showBanner('⚠ Boss en approche', (BOSSES[(level - 1) % BOSSES.length] ?? BOSSES[0]!).name, 'boss', 2500)
       }
       break
@@ -859,6 +882,7 @@ function updateEnemies(dt: number, step: number) {
         if (o.mode === 0 && o.x < PX + 320) {
           o.mode = 1
           o.t = 0.45
+          playSfx('chargerAlert')
         }
         if (o.mode === 1) {
           o.t -= dt
@@ -908,12 +932,17 @@ function updateShots(dt: number) {
     for (const o of enemies) {
       if (o.hp <= 0 || !overlap(r, { x: o.x, y: o.y, w: o.w, h: o.h })) continue
       used = true
-      if (o.kind === 'wall') burst(s.x, s.y, 4, C.silver, 90) // les murs encaissent
-      else {
+      if (o.kind === 'wall') {
+        burst(s.x, s.y, 4, C.silver, 90) // les murs encaissent
+        playSfx('clink')
+      } else {
         o.hp -= 1
         o.hurt = 0.12
         if (o.hp <= 0) killEnemy(o)
-        else burst(s.x, s.y, 5, C.goldSoft, 120)
+        else {
+          burst(s.x, s.y, 5, C.goldSoft, 120)
+          playSfx('hit')
+        }
       }
       break
     }
@@ -945,7 +974,10 @@ function update(dt: number) {
   player.vy += GRAVITY * dt
   player.y += player.vy * dt
   if (player.y >= GROUND) {
-    if (!player.onGround) burst(PX + PW / 2, GROUND, 4, C.silver, 90)
+    if (!player.onGround) {
+      burst(PX + PW / 2, GROUND, 4, C.silver, 90)
+      playSfx('land')
+    }
     player.y = GROUND
     player.vy = 0
     player.onGround = true
@@ -963,6 +995,7 @@ function update(dt: number) {
   coins = coins.filter((c) => {
     if (!overlap(pb, { x: c.x - 8, y: c.y - 8, w: 16, h: 16 })) return true
     coinCount.value++
+    playSfx('coin')
     addPoints(10)
     ammo = Math.min(AMMO_MAX, ammo + 0.5) // une pièce recharge un demi-tir
     burst(c.x, c.y, 8, C.goldSoft, 140)
@@ -1796,6 +1829,8 @@ if (import.meta.env.DEV) {
       },
       shoot,
       jump,
+      sfx: playSfx,
+      audio: () => ({ state: audioState(), muted: soundMuted.value }),
       snap: () => ({
         phase: phase.value,
         level,
@@ -1893,7 +1928,7 @@ if (import.meta.env.DEV) {
             <button type="button" class="btn btn-primary" @pointerdown.stop @keydown.stop @click="tap">
               Lancer la course ▶
             </button>
-            <p class="hint small">Sur ordinateur : clic droit ou touche F pour tirer sans sauter.</p>
+            <p class="hint small">Sur ordinateur : clic droit ou touche F pour tirer sans sauter · M pour couper le son.</p>
           </div>
         </Transition>
 
@@ -1928,6 +1963,19 @@ if (import.meta.env.DEV) {
             </div>
           </div>
         </Transition>
+
+        <button
+          type="button"
+          class="sound-btn"
+          :aria-pressed="!soundMuted"
+          :aria-label="soundMuted ? 'Activer le son' : 'Couper le son'"
+          :title="soundMuted ? 'Activer le son (M)' : 'Couper le son (M)'"
+          @pointerdown.stop
+          @keydown.stop
+          @click="toggleSound"
+        >
+          <AppIcon :name="soundMuted ? 'mute' : 'volume'" :size="18" />
+        </button>
       </div>
     </div>
   </section>
@@ -1936,7 +1984,7 @@ if (import.meta.env.DEV) {
 <style scoped>
 .arena {
   position: relative;
-  height: clamp(240px, 46vw, 380px);
+  height: clamp(290px, 46vw, 380px);
   border-radius: 28px;
   overflow: hidden;
   background: #170a1b;
@@ -2111,6 +2159,37 @@ canvas {
   background: linear-gradient(90deg, #e0607a, var(--gold));
   transform-origin: left;
   transition: transform 0.25s;
+}
+
+/* ---------- Bouton son ---------- */
+.sound-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 222, 240, 0.3);
+  background: rgba(23, 10, 27, 0.6);
+  color: #ece9f0;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, scale 0.25s var(--ease-out);
+}
+
+.sound-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-deep);
+  scale: 1.1;
+}
+
+.sound-btn[aria-pressed='false'] {
+  color: rgba(236, 233, 240, 0.55);
 }
 
 /* ---------- Bannières ---------- */
@@ -2374,8 +2453,28 @@ kbd {
     height: 8px;
   }
   .overlay {
-    gap: 8px;
-    padding: 14px;
+    gap: 6px;
+    padding: 12px;
+  }
+  .overlay h3 {
+    font-size: 1.5rem;
+  }
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  .sound-btn {
+    right: 8px;
+    bottom: 8px;
+    width: 32px;
+    height: 32px;
+  }
+  .final strong {
+    font-size: 2.6rem;
+  }
+  .overlay .btn {
+    padding: 10px 18px;
+    font-size: 14px;
   }
   .banner {
     padding: 8px 16px;

@@ -2,7 +2,7 @@
 export type IconName =
   | 'code' | 'teach' | 'layers' | 'rocket' | 'arrow' | 'sun' | 'moon' | 'menu' | 'close'
   | 'whatsapp' | 'mail' | 'external' | 'github' | 'check' | 'download' | 'pin' | 'quote' | 'clock' | 'expand'
-  | 'phone' | 'file'
+  | 'phone' | 'file' | 'volume' | 'mute'
 
 defineProps<{ name: IconName; size?: number }>()
 
@@ -29,6 +29,8 @@ const paths: Record<IconName, string> = {
   quote: 'M7 7h4v4c0 3-1.5 5-4 6M15 7h4v4c0 3-1.5 5-4 6',
   clock: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7v5l3 2',
   expand: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5',
+  volume: 'M11 5L6 9H2v6h4l5 4V5zM15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14',
+  mute: 'M11 5L6 9H2v6h4l5 4V5zM22 9l-6 6M16 9l6 6',
   phone: 'M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2zM11 18h2',
   file: 'M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5zM14 3v5h5M9 13h6M9 17h4',
 }
